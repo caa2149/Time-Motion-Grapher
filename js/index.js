@@ -31,6 +31,7 @@ function loadItem() {
         if (loc >= 0) {
             var q = data[d].substring(loc+2);
             item = JSON.parse(decodeURIComponent(q));
+            ctr = parseInt(item.keys[item.keys.length-1].ID.substring(1))+1;
         }
     }
     drawResults();
@@ -50,6 +51,7 @@ $("#in").on('click','#add',function() {
                     "<button id='del'></button >" +
                     "<button id='log'>X</log>" +
                   "</div>");
+  var len = item.keys.length;
   item.keys.push(new key(ctr,c,"Thing " + (ctr+1)));
 });
 
