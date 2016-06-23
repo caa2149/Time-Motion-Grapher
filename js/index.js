@@ -37,6 +37,7 @@ function loadItem() {
                 var thing = item.keys[i];
                 addThing(thing.ID,thing.color,thing.desc);
             }
+            $("div #del").hide();
         }
     }
     drawResults();
