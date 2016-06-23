@@ -32,11 +32,15 @@ function loadItem() {
             var q = data[d].substring(loc+2);
             item = JSON.parse(decodeURIComponent(q));
             ctr = parseInt(item.keys[item.keys.length-1].ID.substring(1))+1;
+            $("#in").empty();
+            for (i in item.keys) {
+                var thing = item.keys[i];
+                addThing(thing.ID,thing.color,thing.desc);
+            }
         }
     }
     drawResults();
 }
-loadItem();
 function addThing(id,color,desc) {
     $("#in").append("<div id='"+id+"'>" +
                     "<input id='color' type='color' " +
@@ -47,6 +51,7 @@ function addThing(id,color,desc) {
                     "<button id='log'>X</log>" +
                     "</div>");
 }
+loadItem();
 
 // clicking a plus
 $("#in").on('click','#add',function() {
