@@ -1,9 +1,10 @@
 var ctr = 0;
 var item = {
-  keys: [new key(ctr,"#000000","Thing " + (ctr+1))],
+  keys: [new key(ctr,"#000","Thing " + (ctr+1))],
   time: [],
   interval: 1000
 }
+var Keys = item.keys;
 function key(i,c,d) {
   this.ID = "i" + i;
   this.color = c;
@@ -31,42 +32,34 @@ function loadItem() {
         if (loc >= 0) {
             var q = data[d].substring(loc+2);
             item = JSON.parse(decodeURIComponent(q));
-            $("#in").empty();
-            for (i in item.keys) {
-                appendThing(item.keys[i].color,item.keys[i].desc);
-            }
-            $("#del").hide();
         }
     }
     drawResults();
 }
 loadItem();
-function appendThing(color,id) {
-    $("#in").append("<div id='"+id+"'>" +
-                    "<input id='color' type='color' " +
-                    "value='" + color + "'> " +
-                    "<input id='desc' value='" + id + "'> " +
-                    "<button id='add'></button> " +
-                    "<button id='del'></button >" +
-                    "<button id='log'>X</log>" +
-                    "</div>");
-}
 
 // clicking a plus
 $("#in").on('click','#add',function() {
   var c = Math.floor(Math.random()*16777216).toString(16);
   if (c.length != 6) { c = "#0" + c; }
   else { c = "#" + c; }
-  appendThing(c,'Thing '+(ctr+1));
-  item.keys.push(new key(ctr,c,"Thing " + (ctr+1)));
+  $("#in").append("<div id='i"+ctr+"'>" +
+                    "<input id='color' type='color' " +
+                    "value='" + c + "'> " +
+                    "<input id='desc' value='Thing " + (ctr+1) + "'> " +
+                    "<button id='add'></button> " +
+                    "<button id='del'></button >" +
+                    "<button id='log'>X</log>" +
+                  "</div>");
+  Keys.push(new key(ctr,c,"Thing " + (ctr+1)));
 });
 
 // clicking a minus
 $("#in").on('click','#del',function() {
   var id = $(this).parent().attr("id");
-  for (i in item.keys) {
-    if (item.keys[i].ID == id) { 
-      item.keys.splice(i,1);
+  for (i in Keys) {
+    if (Keys[i].ID == id) { 
+      Keys.splice(i,1);
     }
   }
   $("#"+id).remove();
@@ -77,14 +70,14 @@ $("#in").on('change','input',function() {
   var pt = $(this).parent();
   var pid = pt.attr('id');
   var mid = $(this).attr('id');
-  for (x in item.keys) {
-    if (item.keys[x].ID == pid && mid == 'desc') {
+  for (x in Keys) {
+    if (Keys[x].ID == pid && mid == 'desc') {
       console.log(pid+"'s desc was changed");
-      item.keys[x].desc = $(this).val();
+      Keys[x].desc = $(this).val();
     }
-    else if (item.keys[x].ID == pid && mid == 'color') {
+    else if (Keys[x].ID == pid && mid == 'color') {
       console.log(pid+"'s color was changed");
-      item.keys[x].color = $(this).val();
+      Keys[x].color = $(this).val();
     }
   }
 });
@@ -104,15 +97,11 @@ $("#unlock").click(function() {
 
 // add event pressed
 $("#in").on('click','#log',function() {
-            console.log("pressed");
   var pid = $(this).parent().attr('id');
-            console.log("pid: "+pid);
   var list = item.time;
-            console.log("list: "+list);
-  for (x in item.keys) {
-    if (item.keys[x].ID == pid) {
-            console.log("found: "+item.keys[x].ID);
-      list.splice(curr,0,item.keys[x]);
+  for (x in Keys) {
+    if (Keys[x].ID == pid) {
+      list.splice(curr,0,Keys[x]);
     }
   }
   drawResults();
