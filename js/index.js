@@ -24,6 +24,19 @@ function drawResults() {
   $("#undo button, #log").text(curr);
 }
 var curr = 0;
+function loadItem() {
+    var url = window.location.href;
+    var data = url.slice(url.indexOf('?')+1).split('&');
+    for (d in data) {
+        var loc = data[d].indexOf('q=');
+        if (loc >= 0) {
+            var q = data[d].substring(loc+2);
+            item = JSON.parse(decodeURIComponent(q));
+        }
+    }
+    drawResults();
+}
+loadItem();
 
 // clicking a plus
 $("#in").on('click','#add',function() {
@@ -104,5 +117,4 @@ $("#undo").click(function() {
 $("#out").on('click','div',function() {
   curr = parseInt($(this).attr('data-id'))+1;
   $("#undo button, #log").text(curr);
-  
 });
