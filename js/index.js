@@ -20,8 +20,8 @@ function drawResults() {
       "' style='background:" + list[i].color +
       "' data-id='" + i + "'></div>");
   }
-  curr = (item.time.length-1);
-  $("#undo button").text((parseInt(curr)+1));
+  curr = (item.time.length);
+  $("#undo button, #log").text(curr);
 }
 var curr = 0;
 
@@ -88,7 +88,8 @@ $("#in").on('click','#log',function() {
   var list = item.time;
   for (x in _key) {
     if (_key[x].ID == pid) {
-      list.push(_key[x]);
+      //list.push(_key[x]);
+      list.splice(curr,0,_key[x]);
     }
   }
   drawResults();
@@ -96,13 +97,13 @@ $("#in").on('click','#log',function() {
 
 // undo event
 $("#undo").click(function() {
-  item.time.splice(curr,1);
+  item.time.splice(parseInt(curr)-1,1);
   drawResults();
 });
 
 // click an event
 $("#out").on('click','div',function() {
-  curr = $(this).attr('data-id');
-  $("#undo button, #log").text((parseInt(curr)+1));
+  curr = parseInt($(this).attr('data-id'))+1;
+  $("#undo button, #log").text(curr);
   
 });
