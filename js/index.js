@@ -57,7 +57,7 @@ loadItem();
 // clicking a plus
 $("#in").on('click','#add',function() {
   var c = Math.floor(Math.random()*16777216).toString(16);
-  if (c.length != 6) { c = "#0" + c; }
+  if (c.length != 6) { c = "#0" + c; if (c.length != 6) { c = "#0" + c; if (c.length != 6) { c = "#0" + c; }}}
   else { c = "#" + c; }
 
   var len = item.keys.length;
