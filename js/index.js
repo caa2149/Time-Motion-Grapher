@@ -11,16 +11,20 @@ function key(i,c,d) {
   ctr++;
 }
 function drawResults() {
-  $('#out').empty();
-  var list = item.time;
-  for (i in list) {
-    $('#out').append("<div id='" + list[i].ID +
-      "' title='" + (parseInt(i)+1) + ": " + list[i].desc +
-      "' style='background:" + list[i].color +
-      "' data-id='" + i + "'></div>");
-  }
-  curr = (item.time.length);
-  $("#undo button, #log").text(curr);
+    $('#out').empty();
+    var list = item.time;
+    for (i in list) {
+        for (j in item.keys) {
+            if (item.keys[j].ID == list[i]) {
+                $('#out').append("<div id='" + item.keys[j].ID +
+                                 "' title='" + (parseInt(i)+1) + ": " + item.keys[j].desc +
+                                 "' style='background:" + item.keys[j].color +
+                                 "' data-id='" + i + "'></div>");
+            }
+        }
+    }
+    curr = (item.time.length);
+    $("#undo button, #log").text(curr);
 }
 var curr = 0;
 function loadItem() {
@@ -90,14 +94,6 @@ $("#in").on('change','input',function() {
       item.keys[x].color = $(this).val();
     }
   }
-  for (x in item.time) {
-    if (item.time[x].ID == pid && mid == 'desc') {
-      item.time[x].desc = $(this).val();
-    }
-    else if (item.time[x].ID == pid && mid == 'color') {
-      item.time[x].color = $(this).val();
-    }
-  }
 });
 
 // lock activities and start
@@ -119,7 +115,7 @@ $("#in").on('click','#log',function() {
   var list = item.time;
   for (x in item.keys) {
     if (item.keys[x].ID == pid) {
-      list.splice(curr,0,item.keys[x]);
+      list.splice(curr,0,item.keys[x].ID);
     }
   }
   drawResults();
