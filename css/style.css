@@ -1,0 +1,40 @@
+#add {
+  background: lime;
+  border: limegreen solid 1px;
+  border-radius: 1em;
+} #add::before { content:"+"; }
+
+#del {
+  background: red;
+  border: darkred solid 1px;
+  border-radius: 1em;
+} #del::before { content:"-"; }
+
+#buttons {
+  position:fixed;
+  top:12px;
+  right:12px;
+  text-align:right;
+}
+
+#unlock, #log, #undo {
+  display:none;
+}
+
+#log::before { content: 'Add event after '; }
+
+#out {
+  margin-top:1em;
+  display: flex;
+  justify-content:left;
+  flex-wrap:wrap;
+}
+
+#out div {
+  width:1em;
+  height:1em;
+  border: black solid 1px;
+  margin-bottom:0.5em; 
+}
+
+#undo button::before { content: 'Remove event #'; }
