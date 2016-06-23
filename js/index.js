@@ -91,6 +91,14 @@ $("#in").on('change','input',function() {
       item.keys[x].color = $(this).val();
     }
   }
+  for (x in item.time) {
+    if (item.time[x].ID == pid && mid == 'desc') {
+      item.time[x].desc = $(this).val();
+    }
+    else if (item.time[x].ID == pid && mid == 'color') {
+      item.time[x].color = $(this).val();
+    }
+  }
 });
 
 // lock activities and start
