@@ -38,3 +38,7 @@
 }
 
 #undo button::before { content: 'Remove event '; }
+
+#in {
+    margin:0.5em 0;
+}

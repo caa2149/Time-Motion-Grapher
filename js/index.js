@@ -49,7 +49,7 @@ $("#in").on('click','#add',function() {
                     "<input id='desc' value='Thing " + (ctr+1) + "'> " +
                     "<button id='add'></button> " +
                     "<button id='del'></button >" +
-                    "<button id='log'></log>" +
+                    "<button id='log'>X</log>" +
                   "</div>");
   Keys.push(new key(ctr,c,"Thing " + (ctr+1)));
 });
