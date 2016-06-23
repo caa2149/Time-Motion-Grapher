@@ -83,11 +83,9 @@ $("#in").on('change','input',function() {
   var mid = $(this).attr('id');
   for (x in item.keys) {
     if (item.keys[x].ID == pid && mid == 'desc') {
-      console.log(pid+"'s desc was changed");
       item.keys[x].desc = $(this).val();
     }
     else if (item.keys[x].ID == pid && mid == 'color') {
-      console.log(pid+"'s color was changed");
       item.keys[x].color = $(this).val();
     }
   }
