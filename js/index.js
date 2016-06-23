@@ -88,7 +88,6 @@ $("#in").on('click','#log',function() {
   var list = item.time;
   for (x in _key) {
     if (_key[x].ID == pid) {
-      //list.push(_key[x]);
       list.splice(curr,0,_key[x]);
     }
   }
