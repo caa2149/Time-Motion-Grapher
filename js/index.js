@@ -47,9 +47,9 @@ function addThing(id,color,desc) {
                     "<input id='color' type='color' " +
                     "value='" + color + "'> " +
                     "<input id='desc' value='" + desc + "'> " +
-                    "<button id='log'>X</log>" +
                     "<button id='add'></button> " +
                     "<button id='del'></button >" +
+                    "<button id='log'>X</log>" +
                     "</div>");
 }
 loadItem();

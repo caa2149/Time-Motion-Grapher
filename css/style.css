@@ -1,64 +1,44 @@
-* {
-    box-sizing:border-box;
-}
-
-body {
-    display: flex;
-    flex-direction:row-reverse;
-    flex-wrap:wrap;
-    justify-content:space-around;
-}
-
 #add {
-    background: lime;
-    border: limegreen solid 1px;
-    border-radius: 1em;
+  background: lime;
+  border: limegreen solid 1px;
+  border-radius: 1em;
 } #add::before { content:"+"; }
 
 #del {
-    background: red;
-    border: darkred solid 1px;
-    border-radius: 1em;
+  background: red;
+  border: darkred solid 1px;
+  border-radius: 1em;
 } #del::before { content:"-"; }
 
-#settings {
-    background:orange;
-    display: inline-block;
-    /*position:fixed;
-     top:12px;
-     right:12px;
-     text-align:right;*/
+#buttons {
+  position:fixed;
+  top:12px;
+  right:12px;
+  text-align:right;
 }
 
 #unlock, #log, #undo {
-    display:none;
+  display:none;
 }
 
 #log::before { content: 'Insert after '; }
 
 #out {
-    margin-top:1em;
-    display: flex;
-    justify-content:left;
-    flex-wrap:wrap;
-    width:100%;
+  margin-top:1em;
+  display: flex;
+  justify-content:left;
+  flex-wrap:wrap;
 }
 
 #out div {
-    width:1em;
-    height:1em;
-    border: black solid 1px;
-    margin-bottom:0.5em;
+  width:1em;
+  height:1em;
+  border: black solid 1px;
+  margin-bottom:0.5em; 
 }
 
 #undo button::before { content: 'Remove event '; }
 
-#in > * {
+#in {
     margin:0.5em 0;
-    width:40em;
-    border:black solid;
-}
-
-#front {
-    display: inline-block;
 }
