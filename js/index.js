@@ -37,22 +37,27 @@ function loadItem() {
     drawResults();
 }
 loadItem();
+function addThing(id,color,desc) {
+    $("#in").append("<div id='"+id+"'>" +
+                    "<input id='color' type='color' " +
+                    "value='" + color + "'> " +
+                    "<input id='desc' value='" + desc + "'> " +
+                    "<button id='add'></button> " +
+                    "<button id='del'></button >" +
+                    "<button id='log'>X</log>" +
+                    "</div>");
+}
 
 // clicking a plus
 $("#in").on('click','#add',function() {
   var c = Math.floor(Math.random()*16777216).toString(16);
   if (c.length != 6) { c = "#0" + c; }
   else { c = "#" + c; }
-  $("#in").append("<div id='i"+ctr+"'>" +
-                    "<input id='color' type='color' " +
-                    "value='" + c + "'> " +
-                    "<input id='desc' value='Thing " + (ctr+1) + "'> " +
-                    "<button id='add'></button> " +
-                    "<button id='del'></button >" +
-                    "<button id='log'>X</log>" +
-                  "</div>");
+
   var len = item.keys.length;
   item.keys.push(new key(ctr,c,"Thing " + (ctr+1)));
+  var thing = item.keys[len];
+  addThing(thing.ID,thing.color,thing.desc);
 });
 
 // clicking a minus
