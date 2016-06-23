@@ -1,10 +1,10 @@
 var ctr = 0;
 var item = {
-  key: [new key(ctr,"#000","Thing " + (ctr+1))],
+  keys: [new key(ctr,"#000","Thing " + (ctr+1))],
   time: [],
   interval: 1000
 }
-var _key = item.key;
+var Keys = item.keys;
 function key(i,c,d) {
   this.ID = "i" + i;
   this.color = c;
@@ -38,15 +38,15 @@ $("#in").on('click','#add',function() {
                     "<button id='del'></button >" +
                     "<button id='log'></log>" +
                   "</div>");
-  _key.push(new key(ctr,c,"Thing " + (ctr+1)));
+  Keys.push(new key(ctr,c,"Thing " + (ctr+1)));
 });
 
 // clicking a minus
 $("#in").on('click','#del',function() {
   var id = $(this).parent().attr("id");
-  for (i in _key) {
-    if (_key[i].ID == id) { 
-      _key.splice(i,1);
+  for (i in Keys) {
+    if (Keys[i].ID == id) { 
+      Keys.splice(i,1);
     }
   }
   $("#"+id).remove();
@@ -57,14 +57,14 @@ $("#in").on('change','input',function() {
   var pt = $(this).parent();
   var pid = pt.attr('id');
   var mid = $(this).attr('id');
-  for (x in _key) {
-    if (_key[x].ID == pid && mid == 'desc') {
+  for (x in Keys) {
+    if (Keys[x].ID == pid && mid == 'desc') {
       console.log(pid+"'s desc was changed");
-      _key[x].desc = $(this).val();
+      Keys[x].desc = $(this).val();
     }
-    else if (_key[x].ID == pid && mid == 'color') {
+    else if (Keys[x].ID == pid && mid == 'color') {
       console.log(pid+"'s color was changed");
-      _key[x].color = $(this).val();
+      Keys[x].color = $(this).val();
     }
   }
 });
@@ -86,9 +86,9 @@ $("#unlock").click(function() {
 $("#in").on('click','#log',function() {
   var pid = $(this).parent().attr('id');
   var list = item.time;
-  for (x in _key) {
-    if (_key[x].ID == pid) {
-      list.splice(curr,0,_key[x]);
+  for (x in Keys) {
+    if (Keys[x].ID == pid) {
+      list.splice(curr,0,Keys[x]);
     }
   }
   drawResults();
